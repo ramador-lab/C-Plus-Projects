@@ -19,7 +19,6 @@ int main()
     std::cout << "S- Display the smallest number" <<std::endl;
     std::cout << "L- Display the largest number" << std::endl;
     std::cout << "Q- Quit" << std::endl;
-    } while (item_selection != 'q' || item_selection != 'Q');
     
     
     
@@ -118,6 +117,7 @@ int main()
             "Sorry, not a valid menu selction. Please choose from the list above with the following letters";
             std::cout << std::endl;
         }
+   } while (item_selection != 'q' || item_selection != 'Q');
     
     
     
