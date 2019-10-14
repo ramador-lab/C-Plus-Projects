@@ -110,3 +110,77 @@ int main()
 	std::vector<int> A = toIntVector(AS);
 	std::cout << solution(A);
 }
+
+
+//functions - allow modularization of a program
+// separate code into logical self-contained untis 
+//units may be reused
+//main goal of deveopment ->abstraction
+//Defining functions- name, parameter list(variacbles passed into the function), return type, body (statements executed when the function is called)
+
+//Area of a circle snd Volume of a cylinder
+
+
+//Function prototypes- tells the compiler what it needs to to know without a fuinction definition
+// also called forward declarations 
+
+#include <iostream>
+
+double calc_volume_cylinder(double height, double radius);
+double calc_area_circle(double radius); // Function Prototypes-> forward calls if function is called after its use. 
+// A way to avoid any errors from the compiler 
+
+
+const double pi{ 3.1415 };
+
+
+void area_circle()
+{
+	double radius{};
+	std::cout << "\nEnter the radius of the circle: ";
+	std::cin >> radius;
+	std::cout << " The area of the circle with radius " << radius << " is " << calc_area_circle(radius) << std::endl;
+
+
+}
+
+void volume_cylinder()
+
+{
+	double height{};
+	double radius;
+	std::cout << "\nEnter the height and radius of the cylinder consecutively: ";
+	std::cin >> height;
+	std::cin >> radius;
+	std::cout << "The volume of the cylinder with height " << height << " radius of " << radius << " is " << calc_volume_cylinder(radius, height);
+
+	int num;
+	std::cin >> num;
+
+
+}
+
+int main()
+{
+	area_circle();
+	volume_cylinder();
+
+
+
+	return 0;
+}
+
+
+
+double calc_area_circle(double radius)
+{
+
+	return pi * radius * radius;
+}
+
+
+double calc_volume_cylinder(double height, double radius)
+{
+
+	return pi * radius * radius * height;
+}
