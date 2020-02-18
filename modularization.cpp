@@ -30,106 +30,229 @@ input function prototypes
 #include <vector>
 #include <string>
 #include <iomanip>
+#include <cmath>
 using namespace std;
 
+
+
 void display_menu();
-// thiis string function prints out out the available selection to the user 
+// thiis string function prints out out the available selection to the user
 
-int add(std::vector <int> number_list);
-//function that adds a number to the vector and returns a print out of the list 
+char item_input();
+//Separate function for user to inpit their choice from the given menu
 
-int showing_numbers(std::vector <int> number_list);
+void clear_list (std::vector <int> &c);
 
-int mean_list();
+void add(std::vector <int> &a);
+//function that adds a number to the vector and returns a print out of the list
+
+int showing_numbers(std::vector <int> &p);
+
+int mean_list(std::vector <int> &m);
 //function that returns the mean of the vector
 
-int small_number();
-//returns small number of the vector 
+int small_number(std::vector <int> &s);
+//returns small number of the vector
 
-int large_number();
+int large_number(std::vector <int> &l);
 
-//returns large number of the vector
-string uppercase_letter();
-//returns uppercase command of user
+
+
 
 
 int main()
 
 {
-	char item_selection{};
+	
 	std::vector <int> number_list{};
+	char item_selection{};
 
 	do
 	{
 		
+	
+		 display_menu();
 
-		// for print out of the the item selection list
-		display_menu();
-		//std::cin >> item_selection;
-
-	//printing out the vector of numbers
-		if (item_selection == 'p' || item_selection == 'P')
+		 item_selection = item_input();
+		
+		//printing out the vector of numbers
+		if (item_selection == 'P')
 		{
-
-			int show_numbers(std::vector <int> number_list);
+			 showing_numbers(number_list);
 
 		}
 		//set up adding a number by paaing the integer through the function
-		else if (item_selection == 'a' || item_selection == 'A')
+		else if (item_selection == 'A')
 		{
-			int add(std::vector<int>number_list);
+		  add(number_list);
 		}
 		// getting the mean from the vector of numbers
-		else if (item_selection == 'm' || item_selection == 'M')
+		else if (item_selection == 'M')
 		{
-			std::cout << "\nMean of list: ";
-			if (number_list.size() == 0)
-				std::cout << "\nUanble to calculate mean - no data" << std::endl;
-			else {
-				double total{};
-				double mean;
-				for (auto val : number_list)
-				{
-					total += val;
-
-				}
-
-				mean = total / number_list.size();
-				std::cout << "\nThe mean is " << mean;
-				std::cout << "\n  " << std::endl;
-			}
-
+			 mean_list(number_list);
 
 		}
 
 		//returning the smallest number from the number of vectors
-		else if (item_selection == 's' || item_selection == 'S')
+		else if (item_selection == 'S')
 		{
-			if (number_list.size() == 0)
-			{
-				std::cout << "\nUnable to determine the smallest number - list is empty";
-				std::cout << std::endl;
-			}
-			else {
-				std::cout << "\nThe smallest number is " << std::endl;
-				std::cout << "\n   " << std::endl;
-				int smallest = number_list.at(0);
-				for (auto val : number_list)
-				{
-					if (val < smallest)
-					{
-						smallest = val;
-					}
-				}
-				std::cout << smallest << std::endl;
-				std::cout << "\n  " << std::endl;
-			}
+			 small_number(number_list);
 		}
 
 		//returning the largest number from the numbers listed in the vector
-		else if (item_selection == 'L' || item_selection == 'l')
+		else if (item_selection == 'L')
 		{
-			if (number_list.size() == 0)
+			
+			large_number(number_list);
+			
+
+		}
+
+		else if (item_selection = 'C')
+		{
+
+			clear_list(number_list);
+
+
+		}
+
+		//User Option seleccted to quit
+		else if (item_selection == 'Q')
+		{
+			std::cout << "\nGoodbye Closing Program......." << std::endl;
+		}
+		else {
+			"\nSorry, not a valid menu selction. Please choose from the list above with the following letters";
+			std::cout << std::endl;
+		}
+	} while (item_selection != 'Q');
+
+	std::cout << std::endl;
+
+	return 0;
+}
+
+
+void display_menu()
+{
+	std::cout << "\nP- Print numbers" << std::endl;
+	std::cout << "\nA- Add a number" << std::endl;
+	std::cout << "\nM- Display mean of the numbers" << std::endl;
+	std::cout << "\nS- Display the smallest number" << std::endl;
+	std::cout << "\nL- Display the largest number" << std::endl;
+	std::cout << "\nQ- Quit " << std::endl; 
+
+	
+
+	//print funtion takes in vector
+	//goes through for loop of each index and prints out the string of ecah index
+	// double check the  declaration
+	
+
+}
+
+
+char item_input()
+{
+	char item_selected{};
+	std::cout << "\nEnter a choice from the menu above" << std::endl;
+	std::cin >> item_selected;
+
+	return toupper(item_selected);
+	
+
+}
+
+
+void add(std::vector <int> &a)
+{
+	int added_number;
+
+	std::cout << "\nChoose a number to add to the vector list: ";
+
+	std::cin >> added_number;
+	a.push_back(added_number);
+	std::cout << "\nThe number " << added_number << " has been added to the vector list of numbers";
+	std::cout << std::endl;
+	std::cout << "\nPlease refer back to the menu to select another item selection with the letter characters provided";
+	std::cout << "" << std::endl;
+
+}
+
+
+int showing_numbers(std::vector <int> &p)
+{
+	if (p.size() == 0)
+	{
+		std::cout << "\nSorry, there have not been any numbers added to the vector list";
+		std::cout << std::endl;
+
+	}
+	else {
+		for (auto val : p)
+		{
+			std::cout << "\n  " << val << "    " << std::endl;
+			std::cout << "" << std::endl;
+			return val;
+		}
+	}
+}
+
+
+ int mean_list(std::vector <int> &m)
+{
+	int mean{};
+	std::cout << "\nMean of list: ";
+	if (m.size() == 0)
+		std::cout << "\nUanble to calculate mean - no data" << std::endl;
+	else {
+		double total{};
+		double mean;
+		for (auto val : m)
+		{
+			total += val;
+
+		}
+
+		mean = total / m.size();
+		std::cout << "\nThe mean is " << mean;
+		std::cout << "\n  " << std::endl;
+
+		return mean;
+	}
+}
+
+
+	int small_number(std::vector <int> &s)
+	{
+		int smallest{};
+		if (s.size() == 0)
+		{
+			std::cout << "\nUnable to determine the smallest number - list is empty";
+			std::cout << std::endl;
+		}
+		else {
+			std::cout << "\nThe smallest number is " << std::endl;
+			std::cout << "\n   " << std::endl;
+			int smallest = s.at(0);
+			for (auto val : s)
+			{
+				if (val < smallest)
+				{
+					smallest = val;
+				}
+			}
+			std::cout << smallest << std::endl;
+			std::cout << "\n  " << std::endl;
+			return smallest;
+
+		}
+	}
+		int large_number(std:: vector <int> &l)
+		{
+			int largeNumber{};
+
+			if (l.size() == 0)
 			{
 				std::cout << "Unable to determine the largest number - list is empty";
 				std::cout << std::endl;
@@ -137,8 +260,8 @@ int main()
 
 			std::cout << "\nThe largest number is " << std::endl;
 			std::cout << "\n " << std::endl;
-			int largest = number_list.at(0);
-			for (auto val : number_list)
+			int largest = l.at(0);
+			for (auto val : l)
 			{
 				if (val > largest)
 				{
@@ -148,93 +271,20 @@ int main()
 			std::cout << largest << std::endl;
 			std::cout << "\n   " << std::endl;
 
-
-
+			
+			return largeNumber;
 		}
+		
 
-		//User Option seleccted to quit
-		else if (item_selection == 'q' || item_selection == 'Q')
+
+		void clear_list(std::vector <int>& c)
 		{
-			std::cout << "\nGoodbye Closing Program......." << std::endl;
+
+			c.clear();
+			std::cout << "\nThe list of numbers has been cleared." << std::endl;
 		}
-		else {
-			"\nSorry, not a valid menu selction. Please choose from the list above with the following letters";
-			std::cout << std::endl;
-		}
-	} while (item_selection != 'q' && item_selection != 'Q');
-
-	/*std::cout << "Passing a function through another function" << std::endl;
-	std::cout << "Pass by value" << std::endl;
-	std::cout << "passing anything thorugh by value" << std::endl;
-	std::cout << "Assign a value to the following vectors" << std::endl;
-	std::cout << "By assigning a value to the given number" << std::endl;*/
 
 
 
 
-	std::cout << std::endl;
 
-	return 0;
-}
-
-
-void display_menu ()
-{
-
-	std::cout << "\nP- Print numbers" << std::endl;
-	std::cout << "\nA- Add a number" << std::endl;
-	std::cout << "\nM- Display mean of the numbers" << std::endl;
-	std::cout << "\nS- Display the smallest number" << std::endl;
-	std::cout << "\nL- Display the largest number" << std::endl;
-	std::cout << "\nQ- Quit " << std::endl;
-
-
-	//print funtion takes in vector
-	//goes through for loop of each index and prints out the string of ecah index
-	// double check the prototype declaration
-	
-}
-
-
-int add(std::vector <int> number_list)
-{
-	int added_number;
-
-	std::cout << "\nChoose a number to add to the vector list: ";
-
-	std::cin >> added_number;
-	number_list.push_back(added_number);
-	std::cout << "The number " << added_number << "has been added to the vector list of numbers";
-	std::cout << std::endl;
-	std::cout << "Please refer back to the menu to select another item selection with the letter characters provided";
-
-
-		return added_number;
-}
-
-
-int showing_numbers(std::vector <int> number_list)
-{
-	if (number_list.size() == 0)
-	{
-		std::cout << "\nSorry, there have not been any numbers added to the vector list";
-		std::cout << std::endl;
-
-	}
-	else {
-		for (auto val : number_list)
-		{
-			std::cout << val << "" << std::endl;
-			std::cout << "" << std::endl;
-			return val;
-		}
-	}
-}
-
-
-int mean_list()
-{
-	int mean{};
-
-	return mean;
-}
