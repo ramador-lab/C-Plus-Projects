@@ -46,7 +46,7 @@ void clear_list (std::vector <int> &c);
 void add(std::vector <int> &a);
 //function that adds a number to the vector and returns a print out of the list
 
-int showing_numbers(std::vector <int> &p);
+void showing_numbers(std::vector <int> &p);
 
 int mean_list(std::vector <int> &m);
 //function that returns the mean of the vector
@@ -180,7 +180,7 @@ void add(std::vector <int> &a)
 }
 
 
-int showing_numbers(std::vector <int> &p)
+void showing_numbers(std::vector <int> &p)
 {
 	if (p.size() == 0)
 	{
@@ -193,7 +193,6 @@ int showing_numbers(std::vector <int> &p)
 		{
 			std::cout << "\n  " << val << "    " << std::endl;
 			std::cout << "" << std::endl;
-			return val;
 		}
 	}
 }
@@ -283,6 +282,8 @@ int showing_numbers(std::vector <int> &p)
 			c.clear();
 			std::cout << "\nThe list of numbers has been cleared." << std::endl;
 		}
+
+
 
 
 
